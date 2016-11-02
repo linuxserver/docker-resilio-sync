@@ -12,7 +12,7 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 
 # linuxserver/resilio-sync
 
-[Resilio Sync](https://www.resilio.com/individuals/) (formerly BitTorrent Sync) uses the BitTorrent protocol to files and folders between all of your devices. There are both free and paid versions, this container supports both.
+[Resilio Sync](https://www.resilio.com/individuals/) (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both.
 
 ![sync-image](https://www.resilio.com/img/individual/freeproduct.jpg)
 
