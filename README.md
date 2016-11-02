@@ -11,12 +11,15 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 * [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
 
 # linuxserver/resilio-sync
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/resilio-sync.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/resilio-sync.svg)][hub][![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-resilio-sync)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-resilio-sync/)
+[hub]: https://hub.docker.com/r/linuxserver/resilio-sync/
 
-[Resilio Sync](https://www.resilio.com/individuals/) (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both.
-
-![sync-image](https://www.resilio.com/img/individual/freeproduct.jpg)
-
+[Resilio Sync][syncurl] (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both.
 There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes.
+
+[![syncthing](https://www.resilio.com/img/individual/freeproduct.jpg)][syncurl]
+[syncurl]: https://www.resilio.com/individuals/
+
 
 ## Usage
 
@@ -65,3 +68,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 * image version number
 
 `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/resilio-sync`
+
+## Versions
+
++ **02.11.16:** Initial Release.
