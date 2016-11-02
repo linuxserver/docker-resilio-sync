@@ -1,4 +1,0 @@
-#!/usr/bin/with-contenv bash
-### above is proper shebang for image using s6
-
- 
