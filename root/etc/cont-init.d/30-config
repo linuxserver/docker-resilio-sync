@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bash
+
+# copy config
+[[ ! -e /config/sync.conf ]] && \
+	cp /defaults/sync.conf /config/sync.conf
+
+# permissions
+chown -R abc:abc \
+	/config
+chown abc:abc \
+	/sync
