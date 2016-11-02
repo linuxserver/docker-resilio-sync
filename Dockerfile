@@ -1,7 +1,5 @@
 FROM lsiobase/alpine
-
-# package version
-ARG RESILIO_VER="2.4.1"
+MAINTAINER sparklyballs
 
 # set version label
 ARG BUILD_DATE
@@ -21,7 +19,7 @@ RUN \
 # install resilio
  curl -o \
  /tmp/sync.tar.gz -L \
-	"https://download-cdn.resilio.com/${RESILIO_VER}/linux-x64/resilio-sync_x64.tar.gz" && \
+	https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz && \
  tar xf \
  /tmp/sync.tar.gz \
 	-C /usr/bin && \
