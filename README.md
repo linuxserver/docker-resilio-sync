@@ -11,7 +11,7 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 * [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
 
 # linuxserver/resilio-sync
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/resilio-sync.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/resilio-sync.svg)][hub][![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-resilio-sync)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-resilio-sync/)
+[![](https://images.microbadger.com/badges/version/linuxserver/resilio-sync.svg)](https://microbadger.com/images/linuxserver/resilio-sync "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/resilio-sync.svg)](https://microbadger.com/images/linuxserver/resilio-sync "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/resilio-sync.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/resilio-sync.svg)][hub][![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-resilio-sync)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-resilio-sync/)
 [hub]: https://hub.docker.com/r/linuxserver/resilio-sync/
 
 [Resilio Sync][syncurl] (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both.
@@ -40,6 +40,7 @@ The parameters are split into two halves, separated by a colon, the left hand si
 
 * `-p 8888 -p 55555` - the port(s) required to access the app
 * `-v /config` - contains the settings
+* `-v /sync` - sync folders root
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
 
@@ -55,6 +56,11 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
   $ id <dockeruser>
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
+
+## Setting up the application
+
+* Webui is at `<your-ip>:8888`, for account creation and configuration.
+* More info on setup at [Resilio Sync][syncurl]
 
 ## Info
 
