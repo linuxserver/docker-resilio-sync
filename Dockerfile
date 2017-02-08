@@ -1,4 +1,4 @@
-FROM lsiobase/alpine
+FROM lsiobase/alpine:3.5
 MAINTAINER sparklyballs
 
 # set version label
@@ -11,7 +11,7 @@ RUN \
  apk add --no-cache \
 	curl \
 	tar \
-	libc6-compat && \
+	libc6-compat \
  mkdir -p \
 	/lib64 && \
  ln /lib/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 && \
