@@ -2,6 +2,8 @@
 [forumurl]: https://forum.linuxserver.io
 [ircurl]: https://www.linuxserver.io/irc/
 [podcasturl]: https://www.linuxserver.io/podcast/
+[appurl]: https://www.resilio.com/individuals/
+[hub]: https://hub.docker.com/r/linuxserver/resilio-sync/
 
 [![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
 
@@ -12,13 +14,11 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 
 # linuxserver/resilio-sync
 [![](https://images.microbadger.com/badges/version/linuxserver/resilio-sync.svg)](https://microbadger.com/images/linuxserver/resilio-sync "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/resilio-sync.svg)](https://microbadger.com/images/linuxserver/resilio-sync "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/resilio-sync.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/resilio-sync.svg)][hub][![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-resilio-sync)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-resilio-sync/)
-[hub]: https://hub.docker.com/r/linuxserver/resilio-sync/
 
-[Resilio Sync][syncurl] (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both.
+[Resilio Sync][appurl] (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both.
 There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes.
 
-[![syncthing](https://www.resilio.com/img/individual/freeproduct.jpg)][syncurl]
-[syncurl]: https://www.resilio.com/individuals/
+[![syncthing](https://www.resilio.com/img/individual/freeproduct.jpg)][appurl]
 
 
 ## Usage
@@ -60,7 +60,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 ## Setting up the application
 
 * Webui is at `<your-ip>:8888`, for account creation and configuration.
-* More info on setup at [Resilio Sync][syncurl]
+* More info on setup at [Resilio Sync][appurl]
 
 ## Info
 
