@@ -77,5 +77,6 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 
 ## Versions
 
++ **14.05.17:** Use fixed version instead of latest, while 2.5.0 is broken on non glibc (alpine).
 + **08.02.17:** Rebase to alpine 3.5.
 + **02.11.16:** Initial Release.

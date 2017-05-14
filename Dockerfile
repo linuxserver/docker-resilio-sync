@@ -6,6 +6,9 @@ ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
+# package verions
+ARG SYNC_VER="2.4.5"
+
 # install packages and symlink libs
 RUN \
  apk add --no-cache \
@@ -19,7 +22,7 @@ RUN \
 # install resilio
  curl -o \
  /tmp/sync.tar.gz -L \
-	https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz && \
+	"https://download-cdn.getsync.com/${SYNC_VER}/linux-x64/resilio-sync_x64.tar.gz" && \
  tar xf \
  /tmp/sync.tar.gz \
 	-C /usr/bin && \
