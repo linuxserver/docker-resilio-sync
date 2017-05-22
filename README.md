@@ -29,6 +29,7 @@ docker run -d \
   -v <path to config>:/config \
   -v <path to data>:/sync \
   -e PGID=<gid> -e PUID=<uid>  \
+  -e UMASK_SET=<022> \
   -p 8888:8888 \
   -p 55555:55555 \
   linuxserver/resilio-sync
@@ -43,6 +44,7 @@ The parameters are split into two halves, separated by a colon, the left hand si
 * `-v /sync` - sync folders root
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
+* `-e UMASK_SET` for umask setting of deluge, default if left unset is 022.
 
 This container is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it resilio-sync /bin/bash`.
 
@@ -77,6 +79,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 
 ## Versions
 
++ **22.05.17:** Add variable for user defined umask.
 + **14.05.17:** Use fixed version instead of latest, while 2.5.0 is broken on non glibc (alpine).
 + **08.02.17:** Rebase to alpine 3.5.
 + **02.11.16:** Initial Release.
