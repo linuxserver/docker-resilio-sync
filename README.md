@@ -46,7 +46,7 @@ The parameters are split into two halves, separated by a colon, the left hand si
 * `-e PUID` for UserID - see below for explanation
 * `-e UMASK_SET` for umask setting of resilio-sync, default if left unset is 022.
 
-This container is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it resilio-sync /bin/bash`.
+This container is based on ubuntu xenial with s6 overlay, for shell access whilst the container is running do `docker exec -it resilio-sync /bin/bash`.
 
 ### User / Group Identifiers
 
@@ -79,6 +79,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 
 ## Versions
 
++ **02.06.17:** Rebase to ubuntu xenial, alpine linux no longer works with resilio.
 + **22.05.17:** Add variable for user defined umask.
 + **14.05.17:** Use fixed version instead of latest, while 2.5.0 is broken on non glibc (alpine).
 + **08.02.17:** Rebase to alpine 3.5.
