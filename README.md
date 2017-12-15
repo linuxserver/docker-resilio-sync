@@ -79,6 +79,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 
 ## Versions
 
++ **15.12.17:** Fix continuation lines.
 + **02.06.17:** Rebase to ubuntu xenial, alpine linux no longer works with resilio.
 + **22.05.17:** Add variable for user defined umask.
 + **14.05.17:** Use fixed version instead of latest, while 2.5.0 is broken on non glibc (alpine).
