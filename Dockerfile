@@ -6,14 +6,15 @@ ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="sparklyballs"
 
-# package verions
+# package verions
+ARG SYNC_ARCH="x64"
 ARG SYNC_VER="stable"
 
 RUN \
  echo "**** install resilio-sync ****" && \
  curl -o \
  /tmp/sync.tar.gz -L \
-	"https://download-cdn.getsync.com/${SYNC_VER}/linux-x64/resilio-sync_x64.tar.gz" && \
+	"https://download-cdn.getsync.com/${SYNC_VER}/linux-${SYNC_ARCH}/resilio-sync_${SYNC_ARCH}.tar.gz" && \
  tar xf \
  /tmp/sync.tar.gz \
 	-C /usr/bin && \
@@ -21,9 +22,9 @@ RUN \
  rm -rf \
 	/tmp/*
 
-# add local files
+# add local files
 COPY root/ /
 
-# ports and volumes
+# ports and volumes
 EXPOSE 8888 55555
 VOLUME /config /sync
