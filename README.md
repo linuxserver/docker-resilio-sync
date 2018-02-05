@@ -43,7 +43,7 @@ The parameters are split into two halves, separated by a colon, the left hand si
 * `-p 8888 -p 55555` - the port(s) required to access the app
 * `-v /config` - contains the settings
 * `-v /sync` - sync folders root
-* `-v /downloads` - folder for downloads / cache
+* `-v /downloads` - folder for downloads/cache
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
 * `-e UMASK_SET` for umask setting of resilio-sync, default if left unset is 022.
