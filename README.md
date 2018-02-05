@@ -28,6 +28,7 @@ docker run -d \
   --name=resilio-sync \
   -v <path to config>:/config \
   -v <path to data>:/sync \
+  -v <path to downloads>:/downloads \
   -e PGID=<gid> -e PUID=<uid>  \
   -e UMASK_SET=<022> \
   -p 8888:8888 \
@@ -42,6 +43,7 @@ The parameters are split into two halves, separated by a colon, the left hand si
 * `-p 8888 -p 55555` - the port(s) required to access the app
 * `-v /config` - contains the settings
 * `-v /sync` - sync folders root
+* `-v /downloads` - folder for downloads / cache
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
 * `-e UMASK_SET` for umask setting of resilio-sync, default if left unset is 022.
@@ -62,6 +64,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 ## Setting up the application
 
 * Webui is at `<your-ip>:8888`, for account creation and configuration.
+* Change the location for downloads in the webui settings to /downloads
 * More info on setup at [Resilio Sync][appurl]
 
 ## Info
@@ -79,6 +82,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 
 ## Versions
 
++ **05.02.18:** Add downloads volume mount.
 + **28.01.18:** Add /sync to dir whitelist.
 + **26.01.18:** Use variable for arch to bring in line with armhf arch repo.
 + **15.12.17:** Fix continuation lines.
