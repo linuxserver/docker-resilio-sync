@@ -64,7 +64,6 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 ## Setting up the application
 
 * Webui is at `<your-ip>:8888`, for account creation and configuration.
-* Change the location for downloads in the webui settings to /downloads
 * More info on setup at [Resilio Sync][appurl]
 
 ## Info
