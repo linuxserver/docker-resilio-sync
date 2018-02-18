@@ -29,7 +29,8 @@ docker run -d \
   -v <path to config>:/config \
   -v <path to data>:/sync \
   -v <path to downloads>:/downloads \
-  -e PGID=<gid> -e PUID=<uid>  \
+  -e PGID=<gid> -e PUID=<uid> \
+  -e TZ=<timezone> \
   -e UMASK_SET=<022> \
   -p 8888:8888 \
   -p 55555:55555 \
@@ -44,6 +45,7 @@ The parameters are split into two halves, separated by a colon, the left hand si
 * `-v /config` - contains the settings
 * `-v /sync` - sync folders root
 * `-v /downloads` - folder for downloads/cache
+* `-e TZ` for timezone information, Europe/London
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
 * `-e UMASK_SET` for umask setting of resilio-sync, default if left unset is 022.
