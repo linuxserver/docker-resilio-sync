@@ -45,7 +45,7 @@ The parameters are split into two halves, separated by a colon, the left hand si
 * `-v /config` - contains the settings
 * `-v /sync` - sync folders root
 * `-v /downloads` - folder for downloads/cache
-* `-e TZ` for timezone information, Europe/London
+* `-e TZ` for timezone information *eg Europe/London, etc*
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
 * `-e UMASK_SET` for umask setting of resilio-sync, default if left unset is 022.
