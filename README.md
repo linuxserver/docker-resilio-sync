@@ -83,6 +83,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 
 ## Versions
 
++ **05.02.18:** Rebase to bionic, add pipeline logic and multi arch.
 + **05.02.18:** Add downloads volume mount.
 + **28.01.18:** Add /sync to dir whitelist.
 + **26.01.18:** Use variable for arch to bring in line with armhf arch repo.
