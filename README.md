@@ -1,94 +1,178 @@
-[linuxserverurl]: https://linuxserver.io
-[forumurl]: https://forum.linuxserver.io
-[ircurl]: https://www.linuxserver.io/irc/
-[podcasturl]: https://www.linuxserver.io/podcast/
-[appurl]: https://www.resilio.com/individuals/
-[hub]: https://hub.docker.com/r/linuxserver/resilio-sync/
+[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)](https://linuxserver.io)
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
+The [LinuxServer.io](https://linuxserver.io) team brings you another container release featuring :-
 
-The [LinuxServer.io][linuxserverurl] team brings you another container release featuring easy user mapping and community support. Find us for support at:
-* [forum.linuxserver.io][forumurl]
-* [IRC][ircurl] on freenode at `#linuxserver.io`
-* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+ * regular and timely application updates
+ * easy user mappings (PGID, PUID)
+ * custom base image with s6 overlay
+ * weekly base OS updates with common layers across the entire LinuxServer.io ecosystem to minimise space usage, down time and bandwidth
+ * regular security updates
 
-# linuxserver/resilio-sync
-[![](https://images.microbadger.com/badges/version/linuxserver/resilio-sync.svg)](https://microbadger.com/images/linuxserver/resilio-sync "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/resilio-sync.svg)](https://microbadger.com/images/linuxserver/resilio-sync "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/resilio-sync.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/resilio-sync.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-resilio-sync)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-resilio-sync/)
+Find us at:
+* [Discord](https://discord.gg/YWrKVTn) - realtime support / chat with the community and the team.
+* [IRC](https://irc.linuxserver.io) - on freenode at `#linuxserver.io`. Our primary support channel is Discord.
+* [Blog](https://blog.linuxserver.io) - all the things you can do with our containers including How-To guides, opinions and much more!
+* [Podcast](https://anchor.fm/linuxserverio) - on hiatus. Coming back soon (late 2018).
 
-[Resilio Sync][appurl] (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both.
-There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes.
+# PSA: Changes are happening
 
-[![resilio-sync](https://www.resilio.com/img/individual/freeproduct.jpg)][appurl]
+From August 2018 onwards, Linuxserver are in the midst of switching to a new CI platform which will enable us to build and release multiple architectures under a single repo. To this end, existing images for `arm64` and `armhf` builds are being deprecated. They are replaced by a manifest file in each container which automatically pulls the correct image for your architecture. You'll also be able to pull based on a specific architecture tag.
+
+TLDR: Multi-arch support is changing from multiple repos to one repo per container image.
+
+# [linuxserver/resilio-sync](https://github.com/linuxserver/docker-resilio-sync)
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
+[![](https://images.microbadger.com/badges/version/linuxserver/resilio-sync.svg)](https://microbadger.com/images/linuxserver/resilio-sync "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/linuxserver/resilio-sync.svg)](https://microbadger.com/images/linuxserver/resilio-sync "Get your own version badge on microbadger.com")
+![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/resilio-sync.svg)
+![Docker Stars](https://img.shields.io/docker/stars/linuxserver/resilio-sync.svg)
+[![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-resilio-sync/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-resilio-sync/job/master/)
+[![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/resilio-sync/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/resilio-sync/latest/index.html)
+
+[Resilio-sync](https://www.resilio.com/individuals/) (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both. There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes.
+
+[![resilio-sync](https://www.resilio.com/img/individual/freeproduct.jpg)](https://www.resilio.com/individuals/)
+
+## Supported Architectures
+
+Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list). 
+
+Simply pulling `linuxserver/resilio-sync` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+
+The architectures supported by this image are:
+
+| Architecture | Tag |
+| :----: | --- |
+| x86-64 | amd64-latest |
+| arm64 | arm64v8-latest |
+| armhf | arm32v6-latest |
 
 
 ## Usage
 
+Here are some example snippets to help you get started creating a container.
+
+### docker
+
 ```
-docker run -d \
+docker create \
   --name=resilio-sync \
-  -v <path to config>:/config \
-  -v <path to data>:/sync \
-  -v <path to downloads>:/downloads \
-  -e PGID=<gid> -e PUID=<uid> \
-  -e TZ=<timezone> \
+  -e PUID=1001 \
+  -e PGID=1001 \
+  -e TZ=Europe/London \
   -e UMASK_SET=<022> \
   -p 8888:8888 \
   -p 55555:55555 \
+  -v <path to config>:/config \
+  -v <path to downloads>:/downloads \
+  -v <path to data>:/sync \
+  --restart unless-stopped \
   linuxserver/resilio-sync
+```
+
+
+### docker-compose
+
+Compatible with docker-compose v2 schemas.
+
+```
+---
+version: "2"
+services:
+  resilio-sync:
+    image: linuxserver/resilio-sync
+    container_name: resilio-sync
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/London
+      - UMASK_SET=<022>
+    volumes:
+      - <path to config>:/config
+      - <path to downloads>:/downloads
+      - <path to data>:/sync
+    ports:
+      - 8888:8888
+      - 55555:55555
+    mem_limit: 4096m
+    restart: unless-stopped
 ```
 
 ## Parameters
 
-The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side. For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container. So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080 `http://192.168.x.x:8080` would show you what's running INSIDE the container on port 80.
+Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-* `-p 8888 -p 55555` - the port(s) required to access the app
-* `-v /config` - contains the settings
-* `-v /sync` - sync folders root
-* `-v /downloads` - folder for downloads/cache
-* `-e TZ` for timezone information *eg Europe/London, etc*
-* `-e PGID` for GroupID - see below for explanation
-* `-e PUID` for UserID - see below for explanation
-* `-e UMASK_SET` for umask setting of resilio-sync, default if left unset is 022.
+| Parameter | Function |
+| :----: | --- |
+| `-p 8888` | WebUI |
+| `-p 55555` | Sync Port. |
+| `-e PUID=1001` | for UserID - see below for explanation |
+| `-e PGID=1001` | for GroupID - see below for explanation |
+| `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `-e UMASK_SET=<022>` | For umask setting of resilio-sync, default if left unset is 022. |
+| `-v /config` | Where Jackett should store its config file. |
+| `-v /downloads` | Folder for downloads/cache. |
+| `-v /sync` | Sync folders root. |
 
-This container is based on ubuntu xenial with s6 overlay, for shell access whilst the container is running do `docker exec -it resilio-sync /bin/bash`.
+## User / Group Identifiers
 
-### User / Group Identifiers
+When using volumes (`-v` flags) permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
-Sometimes when using data volumes (`-v` flags) permissions issues can arise between the host OS and the container. We avoid this issue by allowing you to specify the user `PUID` and group `PGID`. Ensure the data volume directory on the host is owned by the same user you specify and it will "just work" ™.
+Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as below:
+In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
 
 ```
-  $ id <dockeruser>
+  $ id username
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
-## Setting up the application
+
+&nbsp;
+## Application Setup
 
 * Webui is at `<your-ip>:8888`, for account creation and configuration.
-* More info on setup at [Resilio Sync][appurl]
+* More info on setup at [Resilio Sync](https://www.resilio.com/individuals/)
 
-## Info
+
+
+## Support Info
 
 * Shell access whilst the container is running: `docker exec -it resilio-sync /bin/bash`
 * To monitor the logs of the container in realtime: `docker logs -f resilio-sync`
-
-* container version number
-
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' resilio-sync`
-
+* container version number 
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' resilio-sync`
 * image version number
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/resilio-sync`
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/resilio-sync`
+## Updating Info
+
+Most of our images are static, versioned, and require an image update and container recreation to update the app inside. With some exceptions (ie. nextcloud, plex), we do not recommend or support updating apps inside the container. Please consult the [Application Setup](#application-setup) section above to see if it is recommended for the image.  
+  
+Below are the instructions for updating containers:  
+  
+### Via Docker Run/Create
+* Update the image: `docker pull linuxserver/resilio-sync`
+* Stop the running container: `docker stop resilio-sync`
+* Delete the container: `docker rm resilio-sync`
+* Recreate a new container with the same docker create parameters as instructed above (if mapped correctly to a host folder, your `/config` folder and settings will be preserved)
+* Start the new container: `docker start resilio-sync`
+* You can also remove the old dangling images: `docker image prune`
+
+### Via Docker Compose
+* Update the image: `docker-compose pull linuxserver/resilio-sync`
+* Let compose update containers as necessary: `docker-compose up -d`
+* You can also remove the old dangling images: `docker image prune`
 
 ## Versions
 
-+ **05.02.18:** Add downloads volume mount.
-+ **28.01.18:** Add /sync to dir whitelist.
-+ **26.01.18:** Use variable for arch to bring in line with armhf arch repo.
-+ **15.12.17:** Fix continuation lines.
-+ **02.06.17:** Rebase to ubuntu xenial, alpine linux no longer works with resilio.
-+ **22.05.17:** Add variable for user defined umask.
-+ **14.05.17:** Use fixed version instead of latest, while 2.5.0 is broken on non glibc (alpine).
-+ **08.02.17:** Rebase to alpine 3.5.
-+ **02.11.16:** Initial Release.
+* **11.02.19:** - Rebase to bionic, add pipeline logic and multi arch.
+* **05.02.18:** - Add downloads volume mount.
+* **28.01.18:** - Add /sync to dir whitelist.
+* **26.01.18:** - Use variable for arch to bring in line with armhf arch repo.
+* **15.12.17:** - Fix continuation lines.
+* **02.06.17:** - Rebase to ubuntu xenial, alpine linux no longer works with resilio.
+* **22.05.17:** - Add variable for user defined umask.
+* **14.05.17:** - Use fixed version instead of latest, while 2.5.0 is broken on non glibc (alpine).
+* **08.02.17:** - Rebase to alpine 3.5.
+* **02.11.16:** - Initial Release.

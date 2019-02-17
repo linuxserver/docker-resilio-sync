@@ -1,0 +1,58 @@
+---
+
+# project information
+project_name: resilio-sync
+project_url: "https://www.resilio.com/individuals/"
+project_logo: "https://www.resilio.com/img/individual/freeproduct.jpg"
+project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both. There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes."
+project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+project_blurb_optional_extras_enabled: false
+
+# supported architectures
+available_architectures:
+  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
+  - { arch: "{{ arch_armhf }}", tag: "arm32v6-latest"}
+
+# development version
+development_versions: false
+
+# container parameters
+common_param_env_vars_enabled: true
+param_container_name: "{{ project_name }}"
+param_usage_include_net: false
+param_usage_include_env: true
+param_env_vars:
+  - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London." }
+  - { env_var: "UMASK_SET", env_value: "<022>", desc: "For umask setting of resilio-sync, default if left unset is 022." }
+param_usage_include_vols: true
+param_volumes:
+  - { vol_path: "/config", vol_host_path: "<path to config>", desc: "Where Jackett should store its config file." }
+  - { vol_path: "/downloads", vol_host_path: "<path to downloads>", desc: "Folder for downloads/cache." }
+  - { vol_path: "/sync", vol_host_path: "<path to data>", desc: "Sync folders root." }
+param_usage_include_ports: true
+param_ports:
+  - { external_port: "8888", internal_port: "8888", port_desc: "WebUI" }
+  - { external_port: "55555", internal_port: "55555", port_desc: "Sync Port." }
+param_device_map: false
+cap_add_param: false
+
+
+# application setup block
+app_setup_block_enabled: true
+app_setup_block: |
+  * Webui is at `<your-ip>:8888`, for account creation and configuration.
+  * More info on setup at [Resilio Sync]({{ project_url }})
+
+# changelog
+changelogs:
+  - { date: "11.02.19:", desc: "Rebase to bionic, add pipeline logic and multi arch." }
+  - { date: "05.02.18:", desc: "Add downloads volume mount." }
+  - { date: "28.01.18:", desc: "Add /sync to dir whitelist." }
+  - { date: "26.01.18:", desc: "Use variable for arch to bring in line with armhf arch repo." }
+  - { date: "15.12.17:", desc: "Fix continuation lines." }
+  - { date: "02.06.17:", desc: "Rebase to ubuntu xenial, alpine linux no longer works with resilio." }
+  - { date: "22.05.17:", desc: "Add variable for user defined umask." }
+  - { date: "14.05.17:", desc: "Use fixed version instead of latest, while 2.5.0 is broken on non glibc (alpine)." }
+  - { date: "08.02.17:", desc: "Rebase to alpine 3.5." }
+  - { date: "02.11.16:", desc: "Initial Release." }
