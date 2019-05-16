@@ -102,7 +102,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `-e UMASK_SET=<022>` | For umask setting of resilio-sync, default if left unset is 022. |
-| `-v /config` | Where Jackett should store its config file. |
+| `-v /config` | Where resilio-sync should store its config file. |
 | `-v /downloads` | Folder for downloads/cache. |
 | `-v /sync` | Sync folders root. |
 
