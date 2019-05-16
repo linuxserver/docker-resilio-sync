@@ -27,7 +27,7 @@ param_env_vars:
   - { env_var: "UMASK_SET", env_value: "<022>", desc: "For umask setting of resilio-sync, default if left unset is 022." }
 param_usage_include_vols: true
 param_volumes:
-  - { vol_path: "/config", vol_host_path: "<path to config>", desc: "Where Jackett should store its config file." }
+  - { vol_path: "/config", vol_host_path: "<path to config>", desc: "Where resilio-sync should store its config file." }
   - { vol_path: "/downloads", vol_host_path: "<path to downloads>", desc: "Folder for downloads/cache." }
   - { vol_path: "/sync", vol_host_path: "<path to data>", desc: "Sync folders root." }
 param_usage_include_ports: true
