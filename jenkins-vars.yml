@@ -3,7 +3,7 @@
 # jenkins variables
 project_name: docker-resilio-sync
 external_type: na
-custom_version_command: "curl -sX GET https://download-cdn.getsync.com/stable/version.txt"
+custom_version_command: "curl -sL https://help.resilio.com/hc/en-us/articles/206178924-Installing-Sync-package-on-Linux | awk -F '(download-cdn.resilio.com/|/Debian/)' '/x64/ {print $2}'"
 release_type: stable
 release_tag: latest
 ls_branch: master
