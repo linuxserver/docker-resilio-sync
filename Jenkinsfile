@@ -103,7 +103,7 @@ pipeline {
       steps{
         script{
           env.EXT_RELEASE = sh(
-            script: ''' curl -sX GET https://download-cdn.getsync.com/stable/version.txt ''',
+            script: ''' curl -sL https://help.resilio.com/hc/en-us/articles/206178924-Installing-Sync-package-on-Linux | awk -F '(download-cdn.resilio.com/|/Debian/)' '/x64/ {print $2}' ''',
             returnStdout: true).trim()
             env.RELEASE_LINK = 'custom_command'
         }
