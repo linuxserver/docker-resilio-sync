@@ -113,7 +113,7 @@ passwd1:4.5-1ubuntu2
 perl-base5.26.1-6ubuntu0.3
 procps2:3.3.12-3ubuntu1.2
 publicsuffix20180223.1310-1
-resilio-sync2.7.0.1366-1
+resilio-sync2.7.1.1370-1
 sed4.4-2
 sensible-utils0.0.12
 sysvinit-utils2.88dsf-59.10ubuntu1
