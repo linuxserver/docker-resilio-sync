@@ -9,3 +9,5 @@ chown -R abc:abc \
 	/config
 chown abc:abc \
 	/sync
+chown abc:abc \
+	/downloads

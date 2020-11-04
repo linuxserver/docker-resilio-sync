@@ -48,6 +48,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "04.11.20:", desc: "Add user permissions for /downloads" }
   - { date: "23.03.19:", desc: "Switching to new Base images, shift to arm32v7 tag." }
   - { date: "11.02.19:", desc: "Rebase to bionic, add pipeline logic and multi arch." }
   - { date: "05.02.18:", desc: "Add downloads volume mount." }
