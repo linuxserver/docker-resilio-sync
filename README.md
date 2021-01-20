@@ -76,7 +76,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022 #optional
     volumes:
       - /path/to/config:/config
       - /path/to/downloads:/downloads
@@ -95,7 +94,6 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
-  -e UMASK_SET=022 `#optional` \
   -p 8888:8888 \
   -p 55555:55555 \
   -v /path/to/config:/config \
@@ -117,7 +115,6 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `-e UMASK_SET=022` | For umask setting of resilio-sync, default if left unset is 022. |
 | `-v /config` | Where resilio-sync should store its config file. |
 | `-v /downloads` | Folder for downloads/cache. |
 | `-v /sync` | Sync folders root. |
@@ -231,6 +228,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **20.01.21:** - Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **11.02.19:** - Rebase to bionic, add pipeline logic and multi arch.
 * **05.02.18:** - Add downloads volume mount.
