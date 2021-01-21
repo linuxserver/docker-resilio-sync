@@ -27,3 +27,6 @@ COPY root/ /
 # ports and volumes
 EXPOSE 8888 55555
 VOLUME /config /sync
+
+# health check
+HEALTHCHECK CMD curl -sL --fail http://google.com/ || exit 1
