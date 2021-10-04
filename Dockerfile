@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-ubuntu:bionic
+FROM ghcr.io/linuxserver/baseimage-ubuntu:focal
 
 # set version label
 ARG BUILD_DATE
@@ -8,18 +8,22 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="thelamer"
 
 RUN \
- echo "**** install resilio-sync ****" && \
- if [ -z ${SYNC_VERSION+x} ]; then \
-	SYNC_VERSION=$(curl -sL https://help.resilio.com/hc/en-us/articles/206178924-Installing-Sync-package-on-Linux | awk -F '(download-cdn.resilio.com/|/Debian/)' '/x64/ {print $2}'); \
- fi && \
- curl -o \
- /tmp/sync.deb -L \
-	"https://download-cdn.resilio.com/${SYNC_VERSION}/Debian/resilio-sync_${SYNC_VERSION}-1_amd64.deb" && \
- dpkg -i \
- /tmp/sync.deb && \
- echo "**** cleanup ****" && \
- rm -rf \
-	/tmp/*
+  echo "**** install packages ****" && \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
+    gnupg && \
+  echo "**** install resilio-sync ****" && \
+  if [ -z ${SYNC_VERSION+x} ]; then \
+    SYNC_VERSION=$(curl -sX GET http://linux-packages.resilio.com/resilio-sync/deb/dists/resilio-sync/non-free/binary-amd64/Packages |grep -A 7 -m 1 'Package: resilio-sync' | awk -F ': ' '/Version/{print $2;exit}'); \
+  fi && \
+  echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" | tee /etc/apt/sources.list.d/resilio-sync.list && \
+  curl -L https://linux-packages.resilio.com/resilio-sync/key.asc | apt-key add && \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
+    "resilio-sync=${SYNC_VERSION}" && \
+  echo "**** cleanup ****" && \
+  rm -rf \
+    /tmp/*
 
 # add local files
 COPY root/ /

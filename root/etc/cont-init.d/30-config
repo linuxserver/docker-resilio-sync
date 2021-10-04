@@ -2,10 +2,10 @@
 
 # copy config
 [[ ! -e /config/sync.conf ]] && \
-	cp /defaults/sync.conf /config/sync.conf
+    cp /defaults/sync.conf /config/sync.conf
 
 # permissions
 chown -R abc:abc \
-	/config
+    /config
 chown abc:abc \
-	/sync
+    /sync

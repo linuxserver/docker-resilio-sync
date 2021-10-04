@@ -18,7 +18,7 @@ jobs:
           fi
           echo "**** External trigger running off of master branch. To disable this trigger, set a Github secret named \"PAUSE_EXTERNAL_TRIGGER_RESILIO_SYNC_MASTER\". ****"
           echo "**** Retrieving external version ****"
-          EXT_RELEASE=$(curl -sL https://help.resilio.com/hc/en-us/articles/206178924-Installing-Sync-package-on-Linux | awk -F '(download-cdn.resilio.com/|/Debian/)' '/x64/ {print $2}')
+          EXT_RELEASE=$(curl -sX GET http://linux-packages.resilio.com/resilio-sync/deb/dists/resilio-sync/non-free/binary-amd64/Packages |grep -A 7 -m 1 'Package: resilio-sync' | awk -F ': ' '/Version/{print $2;exit}')
           if [ -z "${EXT_RELEASE}" ] || [ "${EXT_RELEASE}" == "null" ]; then
             echo "**** Can't retrieve external version, exiting ****"
             FAILURE_REASON="Can't retrieve external version for resilio-sync branch master"
