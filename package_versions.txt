@@ -133,7 +133,7 @@ pinentry-curses1.1.0-3build1
 procps2:3.3.16-1ubuntu2.3
 publicsuffix20200303.0012-1
 readline-common8.0-4
-resilio-sync2.7.3.1381-1
+resilio-sync2.7.2.1375-1
 sed4.7-1
 sensible-utils0.0.12+nmu1
 sysvinit-utils2.96-2.1ubuntu1
