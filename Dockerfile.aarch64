@@ -14,9 +14,9 @@ RUN \
     gnupg && \
   echo "**** install resilio-sync ****" && \
   if [ -z ${SYNC_VERSION+x} ]; then \
-    SYNC_VERSION=$(curl -sX GET http://linux-packages.resilio.com/resilio-sync/deb/dists/resilio-sync/non-free/binary-amd64/Packages |grep -A 7 -m 1 'Package: resilio-sync' | awk -F ': ' '/Version/{print $2;exit}'); \
+    SYNC_VERSION=$(curl -sX GET https://linux-packages.resilio.com/resilio-sync/deb/dists/resilio-sync/non-free/binary-amd64/Packages |grep -A 7 -m 1 'Package: resilio-sync' | awk -F ': ' '/Version/{print $2;exit}'); \
   fi && \
-  echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" | tee /etc/apt/sources.list.d/resilio-sync.list && \
+  echo "deb https://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" | tee /etc/apt/sources.list.d/resilio-sync.list && \
   curl -L https://linux-packages.resilio.com/resilio-sync/key.asc | apt-key add && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
