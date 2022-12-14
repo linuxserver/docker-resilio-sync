@@ -46,6 +46,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "14.12.22:", desc: "Rebase to Jammy, migrate to s6v3." }
   - { date: "03.10.21:", desc: "Use upstream apt repo to install. Rebase to focal." }
   - { date: "20.01.21:", desc: "Deprecate `UMASK_SET` in favor of UMASK in baseimage, see above for more information." }
   - { date: "23.03.19:", desc: "Switching to new Base images, shift to arm32v7 tag." }

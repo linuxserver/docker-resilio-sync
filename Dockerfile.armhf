@@ -1,4 +1,6 @@
-FROM ghcr.io/linuxserver/baseimage-ubuntu:arm32v7-focal
+# syntax=docker/dockerfile:1
+
+FROM ghcr.io/linuxserver/baseimage-ubuntu:arm32v7-jammy
 
 # set version label
 ARG BUILD_DATE
@@ -23,7 +25,10 @@ RUN \
     "resilio-sync=${SYNC_VERSION}" && \
   echo "**** cleanup ****" && \
   rm -rf \
-    /tmp/*
+    /tmp/* \
+    /var/lib/apt/lists/* \
+    /var/tmp/* \
+    /var/log/*
 
 # add local files
 COPY root/ /

@@ -1,11 +1,13 @@
 #!/usr/bin/with-contenv bash
 
 # copy config
-[[ ! -e /config/sync.conf ]] && \
+if [[ ! -e /config/sync.conf ]]; then
     cp /defaults/sync.conf /config/sync.conf
+fi
 
 # permissions
-chown -R abc:abc \
+lsiown -R abc:abc \
     /config
-chown abc:abc \
+
+lsiown abc:abc \
     /sync
