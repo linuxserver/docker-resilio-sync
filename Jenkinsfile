@@ -525,6 +525,7 @@ pipeline {
           --label \"org.opencontainers.image.title=Resilio-sync\" \
           --label \"org.opencontainers.image.description=[Resilio-sync](https://www.resilio.com/individuals/) (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both. There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes.\" \
           --no-cache --pull -t ${IMAGE}:${META_TAG} --platform=linux/amd64 \
+          --provenance=false --sbom=false \
           --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
       }
     }
@@ -556,6 +557,7 @@ pipeline {
               --label \"org.opencontainers.image.title=Resilio-sync\" \
               --label \"org.opencontainers.image.description=[Resilio-sync](https://www.resilio.com/individuals/) (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both. There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes.\" \
               --no-cache --pull -t ${IMAGE}:amd64-${META_TAG} --platform=linux/amd64 \
+              --provenance=false --sbom=false \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
           }
         }
@@ -584,6 +586,7 @@ pipeline {
               --label \"org.opencontainers.image.title=Resilio-sync\" \
               --label \"org.opencontainers.image.description=[Resilio-sync](https://www.resilio.com/individuals/) (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both. There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes.\" \
               --no-cache --pull -f Dockerfile.aarch64 -t ${IMAGE}:arm64v8-${META_TAG} --platform=linux/arm64 \
+              --provenance=false --sbom=false \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
             sh "docker tag ${IMAGE}:arm64v8-${META_TAG} ghcr.io/linuxserver/lsiodev-buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER}"
             retry(5) {
