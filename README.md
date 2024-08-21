@@ -41,7 +41,7 @@ Find us at:
 
 [Resilio-sync](https://www.resilio.com/individuals/) (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both. There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes.
 
-[![resilio-sync](https://www.resilio.com/img/individual/freeproduct.jpg)](https://www.resilio.com/individuals/)
+[![resilio-sync](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/resilio-sync-logo.png)](https://www.resilio.com/individuals/)
 
 ## Supported Architectures
 
@@ -79,7 +79,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/config:/config
+      - /path/to/resilio-sync/config:/config
       - /path/to/downloads:/downloads
       - /path/to/data:/sync
     ports:
@@ -98,7 +98,7 @@ docker run -d \
   -e TZ=Etc/UTC \
   -p 8888:8888 \
   -p 55555:55555 \
-  -v /path/to/config:/config \
+  -v /path/to/resilio-sync/config:/config \
   -v /path/to/downloads:/downloads \
   -v /path/to/data:/sync \
   --restart unless-stopped \
@@ -281,6 +281,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **21.08.24:** - Rebase to Noble.
 * **03.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **14.12.22:** - Rebase to Jammy, migrate to s6v3.
 * **03.10.21:** - Use upstream apt repo to install. Rebase to focal.
