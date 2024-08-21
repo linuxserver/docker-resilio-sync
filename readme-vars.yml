@@ -3,7 +3,7 @@
 # project information
 project_name: resilio-sync
 project_url: "https://www.resilio.com/individuals/"
-project_logo: "https://www.resilio.com/img/individual/freeproduct.jpg"
+project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/resilio-sync-logo.png"
 project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) (formerly BitTorrent Sync) uses the BitTorrent protocol to sync files and folders between all of your devices. There are both free and paid versions, this container supports both. There is an official sync image but we created this one as it supports user mapping to simplify permissions for volumes."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 project_blurb_optional_extras_enabled: false
@@ -11,26 +11,18 @@ project_blurb_optional_extras_enabled: false
 available_architectures:
   - {arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
   - {arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
-# development version
-development_versions: false
 # container parameters
 common_param_env_vars_enabled: true
 param_container_name: "{{ project_name }}"
-param_usage_include_net: false
-param_usage_include_env: true
-param_env_vars:
-  - {env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London."}
-opt_param_usage_include_env: false
 param_usage_include_vols: true
 param_volumes:
-  - {vol_path: "/config", vol_host_path: "/path/to/config", desc: "Where resilio-sync should store its config file."}
+  - {vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/config", desc: "Where resilio-sync should store its config file."}
   - {vol_path: "/downloads", vol_host_path: "/path/to/downloads", desc: "Folder for downloads/cache."}
   - {vol_path: "/sync", vol_host_path: "/path/to/data", desc: "Sync folders root."}
 param_usage_include_ports: true
 param_ports:
   - {external_port: "8888", internal_port: "8888", port_desc: "WebUI"}
   - {external_port: "55555", internal_port: "55555", port_desc: "Sync Port."}
-param_device_map: false
 cap_add_param: false
 # application setup block
 app_setup_block_enabled: true
@@ -39,6 +31,7 @@ app_setup_block: |
   * More info on setup at [Resilio Sync]({{ project_url }})
 # changelog
 changelogs:
+  - {date: "21.08.24:", desc: "Rebase to Noble."}
   - {date: "03.07.23:", desc: "Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)"}
   - {date: "14.12.22:", desc: "Rebase to Jammy, migrate to s6v3."}
   - {date: "03.10.21:", desc: "Use upstream apt repo to install. Rebase to focal."}
