@@ -19,6 +19,7 @@ RUN \
   apt-get update && \
   apt-get install -y --no-install-recommends \
     "resilio-sync=${SYNC_VERSION}" && \
+  printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/* \
