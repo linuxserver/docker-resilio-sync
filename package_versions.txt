@@ -130,7 +130,7 @@ pinentry-curses              1.2.1-3ubuntu5                     deb
 procps                       2:4.0.4-4ubuntu3                   deb     
 publicsuffix                 20231001.0357-0.1                  deb     
 readline-common              8.2-4build1                        deb     
-resilio-sync                 2.8.1.1390-1                       deb     
+resilio-sync                 3.0.0.1409-1                       deb     
 sed                          4.9-2build1                        deb     
 sensible-utils               0.0.22                             deb     
 systemd-standalone-sysusers  255.4-1ubuntu8.2                   deb     
